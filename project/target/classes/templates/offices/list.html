@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Offices</title>
+</head>
+<body>
+    <h1>Offices</h1>
+    <a href="/offices/new">Create New Office</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="office : ${offices}">
+                <td th:text="${office.name}"></td>
+                <td>
+                    <a th:href="@{'/offices/edit/' + ${office.id}}">Edit</a>
+                    <a th:href="@{'/offices/delete/' + ${office.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

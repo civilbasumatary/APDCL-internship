@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Edit User</title>
+</head>
+<body>
+    <h1 th:text="${user.id == null} ? 'Create User' : 'Edit User'"></h1>
+    <form th:action="${user.id == null} ? @{/users} : @{/users/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" />
+        </div>
+        <div>
+            <label for="role">Role:</label>
+            <select id="role" th:field="*{role}">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+        </div>
+        <div>
+            <label for="office">Office:</label>
+            <select id="office" th:field="*{office.id}">
+                <option th:each="office : ${offices}" th:value="${office.id}" th:text="${office.name}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</body>
+</html>
